@@ -6,19 +6,23 @@ const { User } = require('../../models');
 // creates new user
 router.post('/', async (req, res) => {
   try {
-    const userData = await User.create({
-      username: req.body.name,
-      email: req.body.email,
-      password: req.body.password,
-    });
-    req.session.save(() => {
-      req.session.user_id = userData.id;
-      req.session.logged_in = true;
+    if (req.body.password.length >= 8) {
+      const userData = await User.create({
+        username: req.body.name,
+        email: req.body.email,
+        password: req.body.password,
+      });
+      req.session.save(() => {
+        req.session.user_id = userData.id;
+        req.session.logged_in = true;
 
-      res.status(200).json(userData);
-    });
+        res.status(200).json(userData);
+      });
+    } else {
+      res.status(400).json({ message: "Password must be atleast eight characters long!" });
+    };
   } catch (err) {
-    res.status(400).json(err);
+    res.status(400).json("error:", err);
   }
 });
 
@@ -51,7 +55,7 @@ router.post('/login', async (req, res) => {
     });
 
   } catch (err) {
-    res.status(400).json(err);
+    res.status(400).json('error:', err);
   }
 });
 

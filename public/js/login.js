@@ -17,7 +17,8 @@ const loginFormHandler = async (event) => {
       // If successful, redirect the browser to the profile page
       document.location.replace('/');
     } else {
-      alert(response.statusText);
+      const content = await response.json()
+      alert(`${response.statusText}\n\n${content.message}`);
     }
   }
 };
@@ -42,7 +43,8 @@ const signupFormHandler = async (event) => {
     if (response.ok) {
       document.location.replace('/');
     } else {
-      alert(response.statusText);
+      const content = await response.json()
+      alert(`${response.statusText}\n\n${content.message}`);
     }
   }
 };
