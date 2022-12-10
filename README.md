@@ -22,7 +22,7 @@ Simply use the site.
 
 ## Usage
 
-[Deployed Site:](https://lumivent-planner.herokuapp.com/login)
+[Deployed Site:](https://lumivent-planner.herokuapp.com/)
 
 ## Contributing
 ### How to Contribute:
